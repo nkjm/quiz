@@ -1,4 +1,5 @@
 # Quiz
 
-Realtime Bi-Directinal Quiz App runs on Node.js.
-This software is released under the MIT License, see LICENSE.txt.
+Node.js上で動作するクイズアプリケーション。
+WebSocketによってクイズ番組のようなリアルタイムクイズを実施可能。
+このソフトゥエアはMIT Licenseで利用できます。詳しくはLICENSE.txtを参照してください。
