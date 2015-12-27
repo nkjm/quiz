@@ -1,0 +1,27 @@
+{
+  "name": "quiz",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Kazuki Nakajima"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "angular": "~1.4.8",
+    "angular-bootstrap": "~0.14.3",
+    "angular-google-chart": "~0.1.0"
+  }
+}

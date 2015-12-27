@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="quiz-guest">
+
+<head>
+<title>Quiz Guest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
+<meta charset="UTF-8">
+<link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css' />
+<link rel='stylesheet' href='/stylesheets/spinner.css' />
+</head>
+
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/javascripts/quiz-guest.js"></script>
+<script>
+angular.module("quiz-guest")
+.constant("channel", "<%- channel %>");
+</script>
+
+<!-- Root container -->
+<div class="container" ng-controller="rootCtl" style="margin: 20px auto;" ng-cloak>
+    <!-- Answer Form -->
+    <div>
+        <!-- Quiz URL Notification -->
+        <div class="alert alert-info alert-dismissible" role="alert" ng-init="showChannel = true" ng-show="showChannel">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="showChannel = false"><span aria-hidden="true">&times;</span></button>
+            チャンネル「{{channel}}」に参加しています。
+        </div><!-- Quiz URL Notification -->
+
+        <!-- Quiz Tab -->
+        <div>
+            <!-- Progress -->
+            <div style="text-align: center; margin: 40px 0;" ng-show="quiz == null">
+                <spinner></spinner>
+                <div style="margin: 20px 0;">クイズの出題を待機中</div>
+            </div><!-- Progress -->
+
+            <!-- Answer Sent Message -->
+            <div style="margin-bottom:20px;" ng-show="quiz.isAnswered">
+                <div class="alert alert-info">回答を送信しました。正解の発表をお待ちください。</div>
+            </div><!-- Answer Sent Message -->
+
+            <!-- Quiz -->
+            <div ng-if="quiz">
+                <div style="margin-bottom:20px;">
+                    <h4>{{quiz.question}}</h4>
+                </div>
+                <div class="list-group" ng-hide="quiz.isAnswered">
+                    <a href="#" class="list-group-item" ng-repeat="option in quiz.optionList" ng-click="openFinalAnswer(option, $event)">
+                        &nbsp;{{option.option}}
+                    </a>
+                </div>
+                <ul class="list-group" ng-show="quiz.isAnswered">
+                    <li class="list-group-item" ng-repeat="option in quiz.optionList">
+                        <span class="glyphicon glyphicon-ok" ng-show="option.isSelected"></span>&nbsp;{{option.option}}
+                    </li>
+                </ul>
+            </div><!-- Quiz -->
+        </div><!-- Quiz Tab -->
+
+    </div><!-- Answer Form -->
+</div><!-- Root container -->
+
+<!-- Templates -->
+<script type="text/ng-template" id="finalAnswer">
+    <% include templates/finalAnswer %>
+</script>
+<script type="text/ng-template" id="resultNotification">
+    <% include templates/resultNotification %>
+</script>
+<!-- Templates -->
+
+</body>
+
+</html>

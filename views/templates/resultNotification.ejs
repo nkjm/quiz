@@ -1,0 +1,11 @@
+<div class="modal-body" style="text-align:center;">
+    <div ng-if="isCorrect">
+        <h3>正解です！</h3>
+    </div>
+    <div ng-if="!isCorrect">
+        <h3>残念!</h3>
+    </div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-default" ng-click="$close()">閉じる</button>
+</div>
