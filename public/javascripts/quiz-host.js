@@ -1,6 +1,11 @@
+/*
+ @license Quiz v1.0.0
+ (c) 2015 Kazuki Nakajima
+ License: MIT
+*/
 angular.module("quiz-host", ["ui.bootstrap","googlechart"])
 .service("socket", function(channel){
-    this.connection = io.connect(location.protocol + '//' + location.host + '/' + channel);
+    this.connection = io(location.protocol + '//' + location.host + '/' + channel);
 })
 .service("tool", function($log){
     this.genUniqueId = function(){

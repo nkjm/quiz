@@ -1,6 +1,11 @@
+/*
+ @license Quiz v1.0.0
+ (c) 2015 Kazuki Nakajima
+ License: MIT
+*/
 angular.module("quiz-guest", ["ui.bootstrap"])
 .service("socket", function(channel){
-    this.connection = io.connect(location.protocol + '//' + location.host + '/' + channel);
+    this.connection = io(location.protocol + '//' + location.host + '/' + channel);
 })
 .controller("rootCtl", function($scope, $log, $uibModal, channel, socket){
     $scope.channel = channel;
